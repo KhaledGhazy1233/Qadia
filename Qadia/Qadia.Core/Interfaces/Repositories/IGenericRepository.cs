@@ -1,0 +1,23 @@
+﻿using System.Linq.Expressions;
+
+namespace Qadia.Core.Interfaces.Repositories
+{
+    public interface IGenericRepository<T> where T : class
+    {
+        Task<T?> GetByIdAsync(Guid id, params string[] includes);
+
+        Task<IEnumerable<T>> GetAllAsync(params string[] includes);
+
+        Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate, params string[] includes);
+
+        Task<T> AddAsync(T entity);
+
+        Task UpdateAsync(T entity);
+
+        Task DeleteAsync(T entity);
+
+        Task<int> CountAsync();
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    }
+}

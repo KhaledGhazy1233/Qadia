@@ -1,0 +1,174 @@
+﻿<Window x:Class="Qadia.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:Qadia.Helpers"
+        mc:Ignorable="d"
+        Title="تسجيل الدخول - Qadia" Height="700" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        FlowDirection="RightToLeft"
+        Background="White"
+        FontFamily="Segoe UI">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="Background" Value="#F9FAFB"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="Background" Value="#F9FAFB"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Right Side: Login Form (In RTL, Column 0 is the Right side!) Wait, the image shows form on right side of screen. But in RTL, Col 0 is the Right, so Col 0 is right side, Col 1 is Left side -->
+        <!-- Actually, if FlowDirection="RightToLeft", Grid.Column="0" is physically on the Right! -->
+        <!-- Image shows branding on LEFT side of screen, and login form on RIGHT side. Therefore, in RTL, Col 0 is Right (Form) and Col 1 is Left (Branding). -->
+        
+        <!-- Right Side: Login Form (Grid.Column="0") -->
+        <Grid Grid.Column="0" Background="White" Margin="40">
+            <StackPanel VerticalAlignment="Center" MaxWidth="400">
+                
+                <!-- Logo/Icon -->
+                <Border Background="#111827" CornerRadius="12" Width="64" Height="64" HorizontalAlignment="Center" Margin="0,0,0,24">
+                    <TextBlock Text="⚖️" Foreground="#10B981" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                
+                <TextBlock Text="تسجيل الدخول للنظام" FontSize="24" FontWeight="Bold" Foreground="#111827" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                <TextBlock Text="مرحباً بك مجدداً، يرجى إدخال بياناتك للمتابعة" FontSize="14" Foreground="#6B7280" HorizontalAlignment="Center" Margin="0,0,0,40"/>
+                
+                <!-- Username -->
+                <TextBlock Text="اسم المستخدم" Foreground="#374151" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                <Grid Margin="0,0,0,20">
+                    <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="👤" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="12,0" Foreground="#9CA3AF"/>
+                </Grid>
+
+                <!-- Password -->
+                <TextBlock Text="كلمة المرور" Foreground="#374151" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                <Grid Margin="0,0,0,16">
+                    <PasswordBox helpers:PasswordHelper.Attach="True" helpers:PasswordHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <!-- Icon for visibility -->
+                    <Button Command="{Binding TogglePasswordCommand}" Background="Transparent" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0" Cursor="Hand">
+                        <TextBlock Text="👁️" Foreground="#9CA3AF" FontSize="14"/>
+                    </Button>
+                </Grid>
+                
+                <!-- Remember and Forgot -->
+                <DockPanel Margin="0,0,0,32">
+                    <CheckBox Content="تذكرني على هذا الجهاز" Foreground="#4B5563" DockPanel.Dock="Right" VerticalAlignment="Center"/>
+                    <TextBlock Text="نسيت كلمة المرور؟" Foreground="#111827" FontWeight="SemiBold" DockPanel.Dock="Left" VerticalAlignment="Center" Cursor="Hand"/>
+                </DockPanel>
+                
+                <!-- Error Message -->
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="#EF4444" FontSize="13" TextWrapping="Wrap" Margin="0,0,0,16" HorizontalAlignment="Center"/>
+
+                <!-- Login Button -->
+                <Button Command="{Binding LoginCommand}" Background="#10B981" Foreground="White" FontSize="16" FontWeight="Bold" Height="48" BorderThickness="0" Cursor="Hand">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Button.Resources>
+                    <TextBlock Text="دخول" VerticalAlignment="Center"/>
+                </Button>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,32,0,0">
+                    <TextBlock Text="ليس لديك حساب؟ " Foreground="#6B7280" FontSize="14"/>
+                    <TextBlock Text="اتصل بالإدارة" Foreground="#111827" FontWeight="SemiBold" FontSize="14" Cursor="Hand"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+        <!-- Left Side: Branding / Background Image Simulation (Grid.Column="1" in RTL is physical Left) -->
+        <Border Grid.Column="1" Background="#111827">
+            <!-- Simulated background for visual richness -->
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#1F2937" Offset="0"/>
+                        <GradientStop Color="#0F172A" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="40">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Line X1="0" Y1="0" X2="40" Y2="0" Stroke="#10B981" StrokeThickness="2" VerticalAlignment="Center" Margin="0,0,16,0"/>
+                        <TextBlock Text="QADIA" FontSize="36" FontWeight="SemiBold" Foreground="White"/>
+                        <Line X1="0" Y1="0" X2="40" Y2="0" Stroke="#10B981" StrokeThickness="2" VerticalAlignment="Center" Margin="16,0,0,0"/>
+                    </StackPanel>
+                    
+                    <TextBlock Text="نظام قاضية لإدارة المحاماة" FontSize="32" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,16,0,32"/>
+                    
+                    <TextBlock Text="الشريك الصامت في رحلتك القانونية." FontSize="16" Foreground="#D1D5DB" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                    <TextBlock Text="نظام متكامل يوفر لك التحكم الكامل والدقة المتناهية" FontSize="16" Foreground="#D1D5DB" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                    <TextBlock Text="في إدارة القضايا والوثائق بأعلى معايير الأمان." FontSize="16" Foreground="#D1D5DB" HorizontalAlignment="Center" Margin="0,0,0,64"/>
+                    
+                    <!-- Feature Cards (horizontal) -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Border Background="#1E293B" CornerRadius="8" Padding="16" Margin="0,0,16,0" Width="180">
+                            <StackPanel>
+                                <TextBlock Text="سرعة التنفيذ" Foreground="White" FontWeight="Bold" Margin="0,0,0,4"/>
+                                <TextBlock Text="أداء سلس ومباشر" Foreground="#94A3B8" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <Border Background="#1E293B" CornerRadius="8" Padding="16" Width="180">
+                            <StackPanel>
+                                <TextBlock Text="تشفير عالي" Foreground="White" FontWeight="Bold" Margin="0,0,0,4"/>
+                                <TextBlock Text="بياناتك في أمان" Foreground="#94A3B8" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,254 @@
+<UserControl x:Class="Qadia.Views.AddClientDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="500"
+             FlowDirection="RightToLeft">
+    
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="DialogHeaderBg" Color="#1F2937"/>
+        <SolidColorBrush x:Key="DialogBodyBg" Color="White"/>
+        <SolidColorBrush x:Key="ErrorRed" Color="#EF4444"/>
+        <SolidColorBrush x:Key="SuccessGreen" Color="#059669"/>
+
+        <Style x:Key="DialogTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3B82F6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DialogLabel" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Border Background="White" CornerRadius="12" Width="500" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="0" Opacity="0.2"/>
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/> <!-- Header -->
+                <RowDefinition Height="*"/>    <!-- Body -->
+                <RowDefinition Height="Auto"/> <!-- Footer -->
+            </Grid.RowDefinitions>
+
+            <!-- 1. Header Section -->
+            <Border Grid.Row="0" Background="{StaticResource DialogHeaderBg}" CornerRadius="12,12,0,0" Padding="24,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel>
+                        <TextBlock Text="إضافة موكل جديد" Foreground="White" FontSize="18" FontWeight="Bold"/>
+                        <TextBlock Text="أدخل بيانات الموكل القانونية للبدء" Foreground="#9CA3AF" FontSize="12" Margin="0,4,0,0"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="1" Content="✕" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="18" VerticalAlignment="Top" Margin="0,-10,-10,0" Cursor="Hand" Command="{Binding CloseDialogCommand}"/>
+                    
+                    <Border Grid.Column="1" Width="40" Height="40" Background="#374151" CornerRadius="8" HorizontalAlignment="Left" Margin="24,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="👤+" Foreground="#10B981" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- 2. Body Section -->
+            <StackPanel Grid.Row="1" Margin="24,32">
+                <!-- Name & Phone -->
+                <Grid Margin="0,0,0,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Name -->
+                    <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                        <TextBlock Style="{StaticResource DialogLabel}">
+                            <Run Text="اسم الموكل"/> <Run Text="*" Foreground="{StaticResource ErrorRed}"/>
+                        </TextBlock>
+                        <TextBox Style="{StaticResource DialogTextBox}" Tag="مثال: أحمد محمد علي">
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Grid>
+                                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="6">
+                                            <Grid>
+                                                <TextBlock x:Name="placeholder" Text="{TemplateBinding Tag}" Foreground="#94A3B8" Margin="12,0" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                                <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}"/>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="Text" Value="">
+                                            <Setter TargetName="placeholder" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                        <Trigger Property="IsFocused" Value="True">
+                                            <Setter TargetName="border" Property="BorderBrush" Value="#3B82F6"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </StackPanel>
+
+                    <!-- Phone -->
+                    <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                        <TextBlock Style="{StaticResource DialogLabel}">
+                            <Run Text="رقم التليفون"/> <Run Text="*" Foreground="{StaticResource ErrorRed}"/>
+                        </TextBlock>
+                        <TextBox Style="{StaticResource DialogTextBox}" Tag="xxxxxxxxxx" BorderBrush="{StaticResource ErrorRed}" BorderThickness="1">
+                             <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Grid>
+                                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="6">
+                                            <Grid>
+                                                <TextBlock x:Name="placeholder" Text="{TemplateBinding Tag}" Foreground="#94A3B8" Margin="12,0" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="12,0">
+                                                    <TextBlock Text="⚠️" Foreground="{StaticResource ErrorRed}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                                </StackPanel>
+                                                <ScrollViewer x:Name="PART_ContentHost" Padding="32,10,12,10"/>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="Text" Value="">
+                                            <Setter TargetName="placeholder" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                        <TextBlock Text="هذا الحقل مطلوب لإتمام عملية التسجيل" Foreground="{StaticResource ErrorRed}" FontSize="10" Margin="0,4,0,0" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- National ID -->
+                <StackPanel Margin="0,0,0,24">
+                    <TextBlock Style="{StaticResource DialogLabel}" Text="الرقم القومي (اختياري)"/>
+                    <TextBox Style="{StaticResource DialogTextBox}" Tag="2900101xxxxxxx">
+                        <TextBox.Template>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="6">
+                                    <Grid>
+                                        <TextBlock x:Name="placeholder" Text="{TemplateBinding Tag}" Foreground="#94A3B8" Margin="12,0" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                        <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}"/>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter TargetName="placeholder" Property="Visibility" Value="Visible"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                </StackPanel>
+
+                <!-- Address -->
+                <StackPanel Margin="0,0,0,24">
+                    <TextBlock Style="{StaticResource DialogLabel}" Text="العنوان (اختياري)"/>
+                    <Grid>
+                        <TextBox Style="{StaticResource DialogTextBox}" Tag="رقم العقار، اسم الشارع، المحافظة" Padding="12,10,40,10">
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="6">
+                                        <Grid>
+                                            <TextBlock x:Name="placeholder" Text="{TemplateBinding Tag}" Foreground="#94A3B8" Margin="12,0,40,0" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                            <TextBlock Text="📍" Foreground="#94A3B8" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,12,0" FontSize="16"/>
+                                            <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}"/>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="Text" Value="">
+                                            <Setter TargetName="placeholder" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                </StackPanel>
+
+                <!-- Toggle Switch (Official Proxy) -->
+                <Border Background="#F9FAFB" CornerRadius="8" Padding="16,12" BorderBrush="#F1F5F9" BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Switch Toggle -->
+                        <CheckBox Grid.Column="0" VerticalAlignment="Center">
+                            <CheckBox.Template>
+                                <ControlTemplate TargetType="CheckBox">
+                                    <Border x:Name="switch" Width="44" Height="22" Background="#E5E7EB" CornerRadius="11">
+                                        <Ellipse x:Name="dot" Width="16" Height="16" Fill="White" HorizontalAlignment="Left" Margin="3,0">
+                                            <Ellipse.RenderTransform>
+                                                <TranslateTransform X="0"/>
+                                            </Ellipse.RenderTransform>
+                                        </Ellipse>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter TargetName="switch" Property="Background" Value="{StaticResource SuccessGreen}"/>
+                                            <Setter TargetName="dot" Property="HorizontalAlignment" Value="Right"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </CheckBox.Template>
+                        </CheckBox>
+
+                        <StackPanel Grid.Column="1" Margin="16,0">
+                            <TextBlock Text="توكيل رسمي" FontWeight="Bold" FontSize="13" Foreground="{StaticResource TextDark}"/>
+                            <TextBlock Text="هل يوجد توكيل رسمي مسجل لهذا الموكل؟" FontSize="11" Foreground="#6B7280" Margin="0,2,0,0"/>
+                        </StackPanel>
+
+                        <TextBlock Grid.Column="2" Text="🛡️" FontSize="16" VerticalAlignment="Center" Opacity="0.5"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <!-- 3. Footer Section -->
+            <Border Grid.Row="2" Background="#F8FAFC" Padding="24,20" CornerRadius="0,0,12,12" BorderBrush="#F1F5F9" BorderThickness="0,1,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="180" Height="44" Background="#059669" BorderThickness="0" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock Text="💾" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="16"/>
+                                        <TextBlock Text="حفظ البيانات" Foreground="White" FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Width="100" Height="44" Background="White" BorderBrush="#E5E7EB" BorderThickness="1" Margin="12,0,0,0" Cursor="Hand" Command="{Binding CloseDialogCommand}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8">
+                                    <TextBlock Text="إلغاء" Foreground="{StaticResource TextDark}" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
