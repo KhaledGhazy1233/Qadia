@@ -23,11 +23,42 @@ namespace Qadia.ViewModels
         public int PendingDecisions { get; set; } = 12;
         public int SessionsToday { get; set; } = 4;
 
+        private bool _isAddSessionDialogOpen;
+        public bool IsAddSessionDialogOpen
+        {
+            get => _isAddSessionDialogOpen;
+            set { _isAddSessionDialogOpen = value; OnPropertyChanged(); }
+        }
+
+        // Form Properties
+        private string _targetCase;
+        public string TargetCase { get => _targetCase; set { _targetCase = value; OnPropertyChanged(); } }
+
+        private string _targetClient;
+        public string TargetClient { get => _targetClient; set { _targetClient = value; OnPropertyChanged(); } }
+
+        private DateTime _targetDate = DateTime.Now;
+        public DateTime TargetDate { get => _targetDate; set { _targetDate = value; OnPropertyChanged(); } }
+
+        private string _targetTime = "10:30 AM";
+        public string TargetTime { get => _targetTime; set { _targetTime = value; OnPropertyChanged(); } }
+
+        private string _targetRequirements;
+        public string TargetRequirements { get => _targetRequirements; set { _targetRequirements = value; OnPropertyChanged(); } }
+
+        private string _targetDecisionType;
+        public string TargetDecisionType { get => _targetDecisionType; set { _targetDecisionType = value; OnPropertyChanged(); } }
+
+        private string _targetDecision;
+        public string TargetDecision { get => _targetDecision; set { _targetDecision = value; OnPropertyChanged(); } }
+
         public ICommand FilterCommand { get; }
         public ICommand NewSessionCommand { get; }
+        public ICommand CloseDialogCommand { get; }
         public ICommand EditSessionCommand { get; }
         public ICommand DeleteSessionCommand { get; }
         public ICommand ViewHistoryCommand { get; }
+        public ICommand SaveSessionCommand { get; }
 
         public SessionsViewModel()
         {
@@ -75,7 +106,12 @@ namespace Qadia.ViewModels
             };
 
             FilterCommand = new RelayCommand(o => { });
-            NewSessionCommand = new RelayCommand(o => { });
+            NewSessionCommand = new RelayCommand(o => { IsAddSessionDialogOpen = true; });
+            CloseDialogCommand = new RelayCommand(o => { IsAddSessionDialogOpen = false; });
+            SaveSessionCommand = new RelayCommand(o => { 
+                // Logic to save session would go here
+                IsAddSessionDialogOpen = false; 
+            });
             EditSessionCommand = new RelayCommand(o => { });
             DeleteSessionCommand = new RelayCommand(o => { });
             ViewHistoryCommand = new RelayCommand(o => { });

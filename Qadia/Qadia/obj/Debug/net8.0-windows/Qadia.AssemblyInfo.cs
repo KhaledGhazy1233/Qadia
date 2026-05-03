@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Qadia")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7efc3c1182e8099fd56c2a958d7fde5aea9347d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ab5414923714e3caadbc8fea12c66928fec5d68")]
 [assembly: System.Reflection.AssemblyProductAttribute("Qadia")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Qadia")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
