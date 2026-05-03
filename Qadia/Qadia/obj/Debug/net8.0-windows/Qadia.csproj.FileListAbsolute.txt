@@ -302,3 +302,8 @@ d:\LawersProject222\Qadia\Qadia\obj\Debug\net8.0-windows\Views\ClientsView.baml
 d:\LawersProject222\Qadia\Qadia\obj\Debug\net8.0-windows\Views\ClientsView.g.cs
 D:\LawersProject222\Qadia\Qadia\obj\Debug\net8.0-windows\Views\AddClientDialog.baml
 D:\LawersProject222\Qadia\Qadia\obj\Debug\net8.0-windows\Views\AddClientDialog.g.cs
+D:\LawersProject222\Qadia\Qadia\obj\Debug\net8.0-windows\Views\CasesView.baml
+D:\LawersProject222\Qadia\Qadia\obj\Debug\net8.0-windows\Views\CasesView.g.cs
+D:\LawersProject222\Qadia\Qadia\obj\Debug\net8.0-windows\Qadia.sourcelink.json
+D:\LawersProject222\Qadia\Qadia\obj\Debug\net8.0-windows\Views\SessionsView.baml
+D:\LawersProject222\Qadia\Qadia\obj\Debug\net8.0-windows\Views\SessionsView.g.cs

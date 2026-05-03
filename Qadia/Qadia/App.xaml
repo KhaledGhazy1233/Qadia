@@ -9,6 +9,14 @@
             <views:ClientsView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vm:CasesViewModel}">
+            <views:CasesView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:SessionsViewModel}">
+            <views:SessionsView />
+        </DataTemplate>
+
         <SolidColorBrush x:Key="SidebarBg" Color="#1E2533"/>
         <SolidColorBrush x:Key="MainBg" Color="#F5F7FA"/>
         <SolidColorBrush x:Key="PrimaryGreen" Color="#10B981"/>

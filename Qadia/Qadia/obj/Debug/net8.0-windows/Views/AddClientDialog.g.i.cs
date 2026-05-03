@@ -52,7 +52,7 @@ namespace Qadia.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Qadia;component/views/addclientdialog.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Qadia;V1.0.0.0;component/views/addclientdialog.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\AddClientDialog.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

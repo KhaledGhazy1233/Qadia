@@ -3,24 +3,44 @@
   "WorkspaceRootPath": "D:\\LawersProject222\\Qadia\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\viewmodels\\addclientsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\viewmodels\\addclientsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\helpers\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\helpers\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\views\\addclientdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\views\\addclientdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{D1EC73CC-8803-41D0-BF5A-06DF7340EF56}|Qadia.Core\\Qadia.Core.csproj|d:\\lawersproject222\\qadia\\qadia.core\\enums\\lawsuitstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1EC73CC-8803-41D0-BF5A-06DF7340EF56}|Qadia.Core\\Qadia.Core.csproj|solutionrelative:qadia.core\\enums\\lawsuitstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\views\\addclientdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\views\\addclientdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\views\\addclientdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\views\\addclientdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\viewmodels\\casesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\viewmodels\\casesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1EC73CC-8803-41D0-BF5A-06DF7340EF56}|Qadia.Core\\Qadia.Core.csproj|d:\\lawersproject222\\qadia\\qadia.core\\dtos\\lawsuitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1EC73CC-8803-41D0-BF5A-06DF7340EF56}|Qadia.Core\\Qadia.Core.csproj|solutionrelative:qadia.core\\dtos\\lawsuitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1EC73CC-8803-41D0-BF5A-06DF7340EF56}|Qadia.Core\\Qadia.Core.csproj|d:\\lawersproject222\\qadia\\qadia.core\\dtos\\clientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1EC73CC-8803-41D0-BF5A-06DF7340EF56}|Qadia.Core\\Qadia.Core.csproj|solutionrelative:qadia.core\\dtos\\clientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\viewmodels\\addclientsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\viewmodels\\addclientsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\viewmodels\\clientsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\viewmodels\\clientsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|solutionrelative:qadia\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{16FAB428-AF05-4F9D-A614-136813C61B21}|Qadia\\Qadia.csproj|d:\\lawersproject222\\qadia\\qadia\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,15 +90,75 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PasswordHelper.cs",
+              "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\Helpers\\PasswordHelper.cs",
+              "RelativeDocumentMoniker": "Qadia\\Helpers\\PasswordHelper.cs",
+              "ToolTip": "D:\\LawersProject222\\Qadia\\Qadia\\Helpers\\PasswordHelper.cs",
+              "RelativeToolTip": "Qadia\\Helpers\\PasswordHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T05:19:32.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "LawsuitStatus.cs",
+              "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia.Core\\Enums\\LawsuitStatus.cs",
+              "RelativeDocumentMoniker": "Qadia.Core\\Enums\\LawsuitStatus.cs",
+              "ToolTip": "D:\\LawersProject222\\Qadia\\Qadia.Core\\Enums\\LawsuitStatus.cs",
+              "RelativeToolTip": "Qadia.Core\\Enums\\LawsuitStatus.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T05:19:24.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ClientDto.cs",
+              "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia.Core\\Dtos\\ClientDto.cs",
+              "RelativeDocumentMoniker": "Qadia.Core\\Dtos\\ClientDto.cs",
+              "ToolTip": "D:\\LawersProject222\\Qadia\\Qadia.Core\\Dtos\\ClientDto.cs",
+              "RelativeToolTip": "Qadia.Core\\Dtos\\ClientDto.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAA/wAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T05:05:18.021Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LawsuitDto.cs",
+              "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia.Core\\Dtos\\LawsuitDto.cs",
+              "RelativeDocumentMoniker": "Qadia.Core\\Dtos\\LawsuitDto.cs",
+              "ToolTip": "D:\\LawersProject222\\Qadia\\Qadia.Core\\Dtos\\LawsuitDto.cs",
+              "RelativeToolTip": "Qadia.Core\\Dtos\\LawsuitDto.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAzwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T05:05:13.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CasesViewModel.cs",
+              "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\ViewModels\\CasesViewModel.cs",
+              "RelativeDocumentMoniker": "Qadia\\ViewModels\\CasesViewModel.cs",
+              "ToolTip": "D:\\LawersProject222\\Qadia\\Qadia\\ViewModels\\CasesViewModel.cs",
+              "RelativeToolTip": "Qadia\\ViewModels\\CasesViewModel.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAUwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T05:02:40.148Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "AddClientDialog.xaml",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\Views\\AddClientDialog.xaml",
               "RelativeDocumentMoniker": "Qadia\\Views\\AddClientDialog.xaml",
               "ToolTip": "D:\\LawersProject222\\Qadia\\Qadia\\Views\\AddClientDialog.xaml",
               "RelativeToolTip": "Qadia\\Views\\AddClientDialog.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-01T11:33:08.491Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-01T11:33:08.491Z"
             },
             {
               "$type": "Document",
@@ -90,37 +170,35 @@
               "RelativeToolTip": "Qadia\\Views\\AddClientDialog.xaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-01T11:33:06.223Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-01T11:33:06.223Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "AddClientsViewModel.cs",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\ViewModels\\AddClientsViewModel.cs",
               "RelativeDocumentMoniker": "Qadia\\ViewModels\\AddClientsViewModel.cs",
               "ToolTip": "D:\\LawersProject222\\Qadia\\Qadia\\ViewModels\\AddClientsViewModel.cs",
               "RelativeToolTip": "Qadia\\ViewModels\\AddClientsViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-01T11:27:51.32Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-01T11:27:51.32Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "ClientsViewModel.cs",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\ViewModels\\ClientsViewModel.cs",
               "RelativeDocumentMoniker": "Qadia\\ViewModels\\ClientsViewModel.cs",
               "ToolTip": "D:\\LawersProject222\\Qadia\\Qadia\\ViewModels\\ClientsViewModel.cs",
               "RelativeToolTip": "Qadia\\ViewModels\\ClientsViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAACwAAAAAAAAAAAAUwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-01T04:11:17.7Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "ClientsView.xaml",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\Views\\ClientsView.xaml",
               "RelativeDocumentMoniker": "Qadia\\Views\\ClientsView.xaml",
@@ -131,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\ViewModels\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "Qadia\\ViewModels\\LoginViewModel.cs",
@@ -143,7 +221,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "LoginWindow.xaml",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\Views\\LoginWindow.xaml",
               "RelativeDocumentMoniker": "Qadia\\Views\\LoginWindow.xaml",
@@ -154,7 +232,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\App.xaml.cs",
               "RelativeDocumentMoniker": "Qadia\\App.xaml.cs",
@@ -166,7 +244,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\Views\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Qadia\\Views\\MainWindow.xaml",
@@ -177,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "MainWindowViewModel.cs",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\ViewModels\\MainWindowViewModel.cs",
               "RelativeDocumentMoniker": "Qadia\\ViewModels\\MainWindowViewModel.cs",
@@ -185,12 +263,11 @@
               "RelativeToolTip": "Qadia\\ViewModels\\MainWindowViewModel.cs",
               "ViewState": "AQIAAGEAAAAAAAAAAAAiwGQAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T19:27:50.16Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T19:27:50.16Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\LawersProject222\\Qadia\\Qadia\\Views\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Qadia\\Views\\MainWindow.xaml.cs",

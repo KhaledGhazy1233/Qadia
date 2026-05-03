@@ -22,3 +22,4 @@ D:\LawersProject222\Qadia\Qadia.Core\obj\Debug\net8.0\Qadia.Core.dll
 D:\LawersProject222\Qadia\Qadia.Core\obj\Debug\net8.0\refint\Qadia.Core.dll
 D:\LawersProject222\Qadia\Qadia.Core\obj\Debug\net8.0\Qadia.Core.pdb
 D:\LawersProject222\Qadia\Qadia.Core\obj\Debug\net8.0\ref\Qadia.Core.dll
+D:\LawersProject222\Qadia\Qadia.Core\obj\Debug\net8.0\Qadia.Core.sourcelink.json

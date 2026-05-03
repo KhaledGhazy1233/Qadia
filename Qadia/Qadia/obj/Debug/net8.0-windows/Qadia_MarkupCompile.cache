@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\LawersProject222\Qadia\Qadia\App.xaml
-4762076616
+61184569096
 22822592949
-121202810686
+161244100753
 233-1143820732
-Views\AddClientDialog.xaml;Views\ClientsView.xaml;Views\LoginWindow.xaml;Views\MainWindow.xaml;
+Views\AddClientDialog.xaml;Views\CasesView.xaml;Views\ClientsView.xaml;Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\SessionsView.xaml;
 
 False
 

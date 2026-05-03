@@ -1,0 +1,527 @@
+<UserControl x:Class="Qadia.Views.CasesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1200"
+             FlowDirection="RightToLeft">
+             
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <SolidColorBrush x:Key="AccentGreen" Color="#10B981"/>
+        <SolidColorBrush x:Key="HoverGreen" Color="#059669"/>
+        <SolidColorBrush x:Key="SidebarBg" Color="#111827"/>
+        <SolidColorBrush x:Key="TextDark" Color="#1F2937"/>
+        <SolidColorBrush x:Key="TextGray" Color="#6B7280"/>
+        <SolidColorBrush x:Key="BorderGray" Color="#E5E7EB"/>
+
+        <Style x:Key="ModernCard" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderGray}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" Opacity="0.03" BlurRadius="15" ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource AccentGreen}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bgBorder" Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bgBorder" Property="Background" Value="{StaticResource HoverGreen}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CasesDataGrid" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#FAFAFA"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#F9FAFB"/>
+                        <Setter Property="Foreground" Value="{StaticResource TextGray}"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="Padding" Value="16,12"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource BorderGray}"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RowStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="MinHeight" Value="80"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource BorderGray}"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="16,8"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DataGridCell">
+                                    <Border Padding="{TemplateBinding Padding}" Background="Transparent">
+                                        <ContentPresenter VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DialogTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3B82F6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DialogLabel" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#F9FAFB">
+        <StackPanel Margin="32">
+            
+            <!-- Header Section -->
+            <Grid Margin="0,0,0,32">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel>
+                    <TextBlock Text="إدارة ملفات القضايا" FontSize="32" FontWeight="Bold" Foreground="{StaticResource TextDark}"/>
+                    <TextBlock Text="تصفح وإدارة كافة القضايا القانونية النشطة والمؤرشفة" FontSize="15" Foreground="{StaticResource TextGray}" Margin="0,8,0,0"/>
+                </StackPanel>
+
+                <Button Grid.Column="1" Style="{StaticResource ActionButton}" Command="{Binding NewCaseCommand}" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="+" FontSize="20" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="فتح ملف قضية جديدة" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- Stats and Filter Row -->
+            <Grid Margin="0,0,0,32">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Stat 1: Today Sessions -->
+                <Border Grid.Column="0" Width="180" Height="120" Background="#4ADE80" CornerRadius="12" Margin="0,0,16,0" Padding="20">
+                    <Grid>
+                        <StackPanel VerticalAlignment="Bottom">
+                            <TextBlock Text="{Binding SessionsToday}" FontSize="36" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Text="جلسات اليوم" FontSize="14" Foreground="White" Opacity="0.9"/>
+                        </StackPanel>
+                        <Border Width="32" Height="32" Background="White" Opacity="0.2" CornerRadius="16" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBlock Text="✓" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Stat 2: Total Cases -->
+                <Border Grid.Column="1" Width="180" Height="120" Background="#1F2937" CornerRadius="12" Padding="20">
+                    <Grid>
+                        <StackPanel VerticalAlignment="Bottom">
+                            <TextBlock Text="{Binding TotalCases}" FontSize="36" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Text="إجمالي القضايا" FontSize="14" Foreground="White" Opacity="0.9"/>
+                        </StackPanel>
+                        <Border Width="32" Height="32" Background="White" Opacity="0.1" CornerRadius="8" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBlock Text="⚖️" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Filter Bar -->
+                <Border Grid.Column="3" Style="{StaticResource ModernCard}" Padding="24,16">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="2" Margin="0,0,16,0">
+                            <TextBlock Text="نوع القضية" FontSize="12" Foreground="{StaticResource TextGray}" Margin="0,0,0,8"/>
+                            <ComboBox SelectedIndex="0" Height="40" Padding="12,0">
+                                <ComboBoxItem Content="جميع الأنواع"/>
+                                <ComboBoxItem Content="تجاري"/>
+                                <ComboBoxItem Content="مدني"/>
+                                <ComboBoxItem Content="أحوال"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="0,0,16,0">
+                            <TextBlock Text="حالة القضية" FontSize="12" Foreground="{StaticResource TextGray}" Margin="0,0,0,8"/>
+                            <ComboBox SelectedIndex="0" Height="40" Padding="12,0">
+                                <ComboBoxItem Content="جميع الحالات"/>
+                                <ComboBoxItem Content="نشطة"/>
+                                <ComboBoxItem Content="مغلقة"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                            <TextBlock Text="التاريخ" FontSize="12" Foreground="{StaticResource TextGray}" Margin="0,0,0,8"/>
+                            <DatePicker Height="40" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="3" Content="تطبيق الفلاتر" Background="#1F2937" Foreground="White" Padding="24,0" Height="40" VerticalAlignment="Bottom" Command="{Binding FilterCommand}"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Main Cases Table -->
+            <Border Style="{StaticResource ModernCard}" Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Cases}" Style="{StaticResource CasesDataGrid}">
+                        <DataGrid.Columns>
+                            <!-- Case Number -->
+                            <DataGridTextColumn Header="رقم القضية" Binding="{Binding CaseNumber}" Width="1.2*">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="FontSize" Value="14"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <!-- Client -->
+                            <DataGridTemplateColumn Header="الموكل" Width="1.5*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Width="36" Height="36" CornerRadius="18" Background="#F3F4F6" Margin="0,0,12,0">
+                                                <TextBlock Text="👤" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                                            </Border>
+                                            <TextBlock Text="{Binding ClientName}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!-- Court and Circuit -->
+                            <DataGridTemplateColumn Header="المحكمة والدائرة" Width="1.5*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding CourtName}" FontWeight="SemiBold"/>
+                                            <TextBlock Text="{Binding Circuit}" FontSize="12" Foreground="{StaticResource TextGray}" Margin="0,2,0,0"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!-- Subject -->
+                            <DataGridTextColumn Header="موضوع الدعوى" Binding="{Binding Subject}" Width="2*">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                        <Setter Property="FontSize" Value="13"/>
+                                        <Setter Property="Foreground" Value="{StaticResource TextGray}"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <!-- Case Type -->
+                            <DataGridTemplateColumn Header="نوع القضية" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{Binding TypeColor}" CornerRadius="12" Padding="12,4" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding CaseType}" FontSize="11" FontWeight="Bold" Foreground="#475569"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!-- Status -->
+                            <DataGridTemplateColumn Header="الحالة" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Ellipse Width="8" Height="8" Fill="{Binding StatusColor}" Margin="0,0,8,0"/>
+                                            <TextBlock Text="{Binding Status}" Foreground="{Binding StatusColor}" FontWeight="Bold" FontSize="12"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!-- Actions -->
+                            <DataGridTemplateColumn Header="الإجراءات" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Background="Transparent" BorderThickness="0" Margin="8,0" Cursor="Hand" ToolTip="الجلسات">
+                                                <TextBlock Text="📅" FontSize="16" Foreground="{StaticResource TextGray}"/>
+                                            </Button>
+                                            <Button Background="Transparent" BorderThickness="0" Margin="8,0" Cursor="Hand" ToolTip="تعديل">
+                                                <TextBlock Text="✏️" FontSize="16" Foreground="{StaticResource TextGray}"/>
+                                            </Button>
+                                            <Button Background="Transparent" BorderThickness="0" Margin="8,0" Cursor="Hand" ToolTip="حذف">
+                                                <TextBlock Text="🗑️" FontSize="16" Foreground="#EF4444"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- Pagination -->
+                    <Border Grid.Row="2" Padding="24" BorderBrush="{StaticResource BorderGray}" BorderThickness="0,1,0,0">
+                        <Grid>
+                            <TextBlock Text="عرض 10 من أصل 142 قضية" Foreground="{StaticResource TextGray}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button Content="&gt;" Width="32" Height="32" Margin="4,0" Background="White" BorderBrush="{StaticResource BorderGray}"/>
+                                <Button Content="1" Width="32" Height="32" Margin="4,0" Background="#1F2937" Foreground="White" BorderThickness="0"/>
+                                <Button Content="2" Width="32" Height="32" Margin="4,0" Background="White" BorderBrush="{StaticResource BorderGray}"/>
+                                <Button Content="3" Width="32" Height="32" Margin="4,0" Background="White" BorderBrush="{StaticResource BorderGray}"/>
+                                <Button Content="&lt;" Width="32" Height="32" Margin="4,0" Background="White" BorderBrush="{StaticResource BorderGray}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Bottom Section -->
+            <Grid Margin="0,32,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- System Updates Card -->
+                <Border Grid.Column="0" Style="{StaticResource ModernCard}">
+                    <StackPanel>
+                        <TextBlock Text="تحديثات الأنظمة" FontSize="18" FontWeight="Bold" Margin="0,0,0,16"/>
+                        <TextBlock Text="تم دمج نظام الربط القضائي الجديد لسرعة جلب بيانات الجلسات آلياً." TextWrapping="Wrap" Foreground="{StaticResource TextGray}" FontSize="14" LineHeight="22"/>
+                        <Button Background="Transparent" BorderThickness="0" Foreground="{StaticResource SidebarBg}" FontWeight="Bold" HorizontalAlignment="Left" Margin="0,16,0,0">
+                            <TextBlock Text="اقرأ المزيد ←"/>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <!-- Case Distribution Chart -->
+                <Border Grid.Column="2" Style="{StaticResource ModernCard}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="توزيع القضايا حسب المحكمة" FontSize="18" FontWeight="Bold" Margin="0,0,0,24"/>
+                        
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Width="120" Height="120" BorderBrush="#F3F4F6" BorderThickness="8" CornerRadius="60" Margin="0,0,32,0">
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="142" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="إجمالي الملفات" FontSize="10" Foreground="{StaticResource TextGray}" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Grid Margin="0,0,0,16">
+                                    <TextBlock Text="محكمة دبي الابتدائية" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="45%" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Left"/>
+                                    <ProgressBar Value="45" Height="8" Margin="0,24,0,0" Foreground="#1F2937" Background="#F3F4F6" BorderThickness="0"/>
+                                </Grid>
+                                <Grid Margin="0,0,0,16">
+                                    <TextBlock Text="محكمة الاستئناف" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="28%" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Left"/>
+                                    <ProgressBar Value="28" Height="8" Margin="0,24,0,0" Foreground="#10B981" Background="#F3F4F6" BorderThickness="0"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="محكمة التنفيذ" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="17%" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Left"/>
+                                    <ProgressBar Value="17" Height="8" Margin="0,24,0,0" Foreground="#F59E0B" Background="#F3F4F6" BorderThickness="0"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+
+    <!-- Register New Case Popup Overlay -->
+    <Grid x:Name="Overlay" Visibility="{Binding IsAddCaseDialogOpen, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Border Background="Black" Opacity="0.4"/>
+        
+        <!-- Dialog Content -->
+        <Border Background="White" CornerRadius="12" Width="650" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" ShadowDepth="0" Opacity="0.2"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/> <!-- Header -->
+                    <RowDefinition Height="*"/>    <!-- Body -->
+                    <RowDefinition Height="Auto"/> <!-- Footer -->
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <Border Grid.Row="0" Background="#1F2937" CornerRadius="12,12,0,0" Padding="24,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Width="40" Height="40" Background="#374151" CornerRadius="8" Margin="0,0,16,0">
+                            <TextBlock Text="⚖️" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </Border>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="تسجيل قضية جديدة" Foreground="White" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Text="أدخل بيانات ملف الموكل القانونية للبدء" Foreground="#9CA3AF" FontSize="12" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <Button Grid.Column="2" Content="✕" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="18" VerticalAlignment="Top" Margin="0,-10,-10,0" Cursor="Hand" Command="{Binding CloseDialogCommand}"/>
+                    </Grid>
+                </Border>
+
+                <!-- Body -->
+                <ScrollViewer Grid.Row="1" MaxHeight="600" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="24,32">
+                        <!-- Select Client -->
+                        <StackPanel Margin="0,0,0,24">
+                            <TextBlock Style="{StaticResource DialogLabel}" Text="اختيار الموكل"/>
+                            <Grid>
+                                <ComboBox Height="45" Padding="12,0" VerticalContentAlignment="Center">
+                                    <ComboBoxItem IsEnabled="False">
+                                        <Grid Width="550">
+                                            <TextBlock Text="🔍 ابحث عن اسم الموكل..." Foreground="#94A3B8" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                        </StackPanel>
+
+                        <!-- Case Number and Type -->
+                        <Grid Margin="0,0,0,24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="24"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Style="{StaticResource DialogLabel}">
+                                    <Run Text="رقم القضية"/> <Run Text="*" Foreground="#EF4444"/>
+                                </TextBlock>
+                                <TextBox Style="{StaticResource DialogTextBox}" Tag="مثال: 1234/2024" Height="45"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Style="{StaticResource DialogLabel}" Text="نوع القضية"/>
+                                <ComboBox SelectedIndex="0" Height="45" Padding="12,0" VerticalContentAlignment="Center">
+                                    <ComboBoxItem Content="اختر نوع القضية" Foreground="#94A3B8"/>
+                                    <ComboBoxItem Content="تجاري"/>
+                                    <ComboBoxItem Content="مدني"/>
+                                    <ComboBoxItem Content="أحوال"/>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Court Name and Circuit -->
+                        <Grid Margin="0,0,0,24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="24"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Style="{StaticResource DialogLabel}">
+                                    <Run Text="اسم المحكمة"/> <Run Text="*" Foreground="#EF4444"/>
+                                </TextBlock>
+                                <TextBox Style="{StaticResource DialogTextBox}" Tag="مثال: محكمة جنوب القاهرة" Height="45"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Style="{StaticResource DialogLabel}" Text="الدائرة"/>
+                                <TextBox Style="{StaticResource DialogTextBox}" Tag="رقم أو اسم الدائرة" Height="45"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Case Subject -->
+                        <StackPanel Margin="0,0,0,24">
+                            <TextBlock Style="{StaticResource DialogLabel}" Text="موضوع الدعوى"/>
+                            <TextBox Style="{StaticResource DialogTextBox}" Tag="اكتب تفاصيل موجزة عن موضوع الدعوى..." Height="120" AcceptsReturn="True" TextWrapping="Wrap" VerticalContentAlignment="Top" Padding="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Footer -->
+                <Border Grid.Row="2" Background="#F8FAFC" Padding="24,20" CornerRadius="0,0,12,12" BorderBrush="#F1F5F9" BorderThickness="0,1,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Width="180" Height="44" Background="#10B981" Foreground="White" FontWeight="Bold" Command="{Binding CloseDialogCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="💾" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="حفظ البيانات" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Width="100" Height="44" Background="White" BorderBrush="#E5E7EB" BorderThickness="1" Margin="12,0,0,0" Content="إلغاء" Command="{Binding CloseDialogCommand}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Grid>
+</UserControl>

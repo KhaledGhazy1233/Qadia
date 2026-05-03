@@ -32,3 +32,4 @@ D:\LawersProject222\Qadia\Qadia.Infrastructure\obj\Debug\net8.0\refint\Qadia.Inf
 D:\LawersProject222\Qadia\Qadia.Infrastructure\obj\Debug\net8.0\Qadia.Infrastructure.pdb
 D:\LawersProject222\Qadia\Qadia.Infrastructure\obj\Debug\net8.0\Qadia.Infrastructure.genruntimeconfig.cache
 D:\LawersProject222\Qadia\Qadia.Infrastructure\obj\Debug\net8.0\ref\Qadia.Infrastructure.dll
+D:\LawersProject222\Qadia\Qadia.Infrastructure\obj\Debug\net8.0\Qadia.Infrastructure.sourcelink.json

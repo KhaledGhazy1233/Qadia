@@ -33,8 +33,8 @@ namespace Qadia.ViewModels
         {
             HomeCommand = new RelayCommand(o => CurrentViewModel = null);
             ClientsCommand = new RelayCommand(o => CurrentViewModel = new ClientsViewModel());
-            CasesCommand = new RelayCommand(o => { });
-            SessionsCommand = new RelayCommand(o => { });
+            CasesCommand = new RelayCommand(o => CurrentViewModel = new CasesViewModel());
+            SessionsCommand = new RelayCommand(o => CurrentViewModel = new SessionsViewModel());
             SettingsCommand = new RelayCommand(o => { });
             NewFileCommand = new RelayCommand(o => { });
 
